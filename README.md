@@ -26,8 +26,11 @@ kubectl label namespace default istio-injection=enabled
 
 
 minikube dashboard
+
 istioctl dashboard kiali
+
 istioctl dashboard jaeger
+
 
 
 ### Deploy Application 
