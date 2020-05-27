@@ -2,7 +2,7 @@ apiVersion: skaffold/v2alpha1
 kind: Config
 build:
   artifacts:
-    - image: piomin/callme-service
+    - image: gcr.io/teak-backup-270111/callme-service
       jib: {}
   local: {}
   tagPolicy:
