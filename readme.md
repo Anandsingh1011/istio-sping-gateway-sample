@@ -80,4 +80,21 @@ curl -v  -H 'Host: caller.example.com' http://INGRESS_IP:INGRESS_PORT/caller/pin
 
 for ((i=1;i<=1000;i++)); do   curl -v  -H 'Host: caller.example.com' http://192.168.64.11:32621/caller/ping ; done
 
+# Request payload for GCP
+==========================
 
+gcloud container clusters get-credentials CLUSTER_NAME --zone us-central1-c --project PROJECT_ID
+
+gcloud auth configure-dockerc
+
+Get IP on GCP Istio Ingress 
+
+export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
+export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].port}')
+
+Port will be 80
+
+curl -v  -H 'Host: caller.example.com' http://34.69.81.110/caller/ping
+
+for ((i=1;i<=1000;i++)); do  curl -v  -H 'Host: caller.example.com' http://34.69.81.110/caller/ping ; done
