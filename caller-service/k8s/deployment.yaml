@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: caller-service
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: caller-service
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: caller-service
-        image: piomin/caller-service
+        image: gcr.io/teak-backup-270111/caller-service
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
